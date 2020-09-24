@@ -1,0 +1,54 @@
+
+
+//////////// tutti gli ospiti segnati con carta identita////////////
+
+SELECT `name`, `lastname`, `document_type` 
+FROM `ospiti` 
+WHERE `document_type` = 'CI';
+
+/////// tutti gli ospiti nati dopo il 1988/////////////
+
+SELECT `name`, `lastname`,YEAR(`date_of_birth`) as `year_of_birth `
+FROM `ospiti` 
+WHERE YEAR(`date_of_birth`) > 1988;
+
+//////// tutti gli ospiti che hanno piu di 20 anni////////////
+
+SELECT TIMESTAMPDIFF(YEAR, date_of_birth,CURRENT_DATE) AS `age`, `name`, `lastname`, 
+`date_of_birth` FROM `ospiti` 
+WHERE TIMESTAMPDIFF(YEAR, date_of_birth,CURRENT_DATE) > 20;
+
+//// solo ospiti che cominciano con la d ///////////////
+
+SELECT `name`,`lastname`
+ FROM `ospiti` 
+WHERE `name` LIKE 'D%'
+
+/////totale ospiti paganti////////////////
+
+SELECT `name`, `lastname` , `ospite_id` 
+FROM `paganti` 
+WHERE `ospite_id` <> 'null';
+
+///prezzo massimo pagato//////////////
+
+SELECT  MAX(`price`) as `prezzo_massimo_pagato`
+FROM `pagamenti`
+WHERE `status` = 'accepted';
+
+///////ospiti segnati con patente e nati nel 1975///////
+
+SELECT `name`, `lastname` ,`document_type` ,YEAR(`date_of_birth`) AS `anno_nascita`
+FROM `ospiti` 
+WHERE YEAR(`date_of_birth`) = 1975 AND document_type = 'Driver License';
+
+/////quanti paganti sono ospiti//////////
+
+SELECT `name`, `lastname` , `ospite_id` 
+FROM `paganti` 
+WHERE `ospite_id` <> 'null';
+
+///////posti letto totali/////////
+
+SELECT SUM(`beds`) AS `posti_letto_hotel`
+FROM `stanze`;
