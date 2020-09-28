@@ -3,6 +3,7 @@
 SELECT HOUR(prenotazioni.created_at), COUNT(HOUR(prenotazioni.created_at)) AS `frequeza_prenotazione`
 FROM prenotazioni
 GROUP BY HOUR(prenotazioni.created_at)
+HAVING `frequeza_prenotazione` > 1
 ORDER BY `frequeza_prenotazione` DESC;
 
 ////////////////////////////////////////////////////////////////
