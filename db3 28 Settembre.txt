@@ -1,7 +1,7 @@
 1)///////Fai un'analisi per vedere se ci sono ore in cui le prenotazioni sono più frequenti.///////////////
 
 SELECT HOUR(prenotazioni.created_at), COUNT(HOUR(prenotazioni.created_at)) AS `frequeza_prenotazione`
-FROM prenotazioni
+FROM `prenotazioni`
 GROUP BY HOUR(prenotazioni.created_at)
 HAVING `frequeza_prenotazione` > 1
 ORDER BY `frequeza_prenotazione` DESC;
